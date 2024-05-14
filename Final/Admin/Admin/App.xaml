@@ -1,0 +1,60 @@
+﻿<Application x:Class="Admin.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Admin"
+             xmlns:View="clr-namespace:Admin.View"
+             xmlns:CategoryView="clr-namespace:Admin.View.CategoryView"
+             xmlns:ProjectView="clr-namespace:Admin.View.ProjectView"
+             xmlns:ViewModel="clr-namespace:Admin.ViewModel"
+             xmlns:CategoryVM="clr-namespace:Admin.ViewModel.CategoryVM"
+             xmlns:ProjectVM="clr-namespace:Admin.ViewModel.ProjectVM"
+             StartupUri="View/MainWindow.xaml">
+
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <DataTemplate DataType="{x:Type ViewModel:MainVM}">
+                <local:MainWindow></local:MainWindow>
+            </DataTemplate>
+
+
+            
+            <DataTemplate DataType="{x:Type CategoryVM:AddCategoryVM}">
+                <CategoryView:AddCategoryView></CategoryView:AddCategoryView>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type CategoryVM:EditCategoryVM}">
+                <CategoryView:EditCategoryView></CategoryView:EditCategoryView>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type CategoryVM:DeleteCategoryVM}">
+                <CategoryView:DeleteCategoryView></CategoryView:DeleteCategoryView>
+            </DataTemplate>
+
+
+
+            <DataTemplate DataType="{x:Type ProjectVM:AddProjectVM}">
+                <ProjectView:AddProjectView></ProjectView:AddProjectView>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type ProjectVM:SearchProjectVM}">
+                <ProjectView:SearchProjectView></ProjectView:SearchProjectView>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type ProjectVM:InfoProjectVM}">
+                <ProjectView:InfoProjectView></ProjectView:InfoProjectView>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type ProjectVM:EditProjectVM}">
+                <ProjectView:EditProjectView></ProjectView:EditProjectView>
+            </DataTemplate>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,136 @@
+﻿<Window x:Class="Launcher.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Launcher.View"
+        mc:Ignorable="d"
+        Title="Mad Fairy Games" Height="600" Width="1000" MaxHeight="600" MaxWidth="1000"
+        MinHeight="600" MinWidth="1200" Background="#253245"
+        WindowStyle="None" ResizeMode="NoResize" 
+        Icon="https://st2.depositphotos.com/1734074/11465/v/600/depositphotos_114653216-stock-illustration-thin-line-gamepad-icon-white.jpg">
+
+    <Window.Resources>
+        <ControlTemplate x:Key="TopNenuButtons" TargetType="Button">
+            <Grid Name="Btn" Height="40px" Margin="20 0 0 0">
+                <Border>
+                    <Grid>
+                        
+                        <Label Content="{TemplateBinding Content}" Background="Transparent" FontSize="23" VerticalAlignment="Center">
+                            <Label.Style>
+                                <Style TargetType="Label">
+                                    <Setter Property="Foreground" Value="#FF9D9999"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Path=IsMouseOver, ElementName=Btn}" 
+                                                     Value="true">
+                                            <Setter Property="Foreground" Value="White"/>
+                                        </DataTrigger>
+
+                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource 
+                                            Mode=FindAncestor, 
+                                            AncestorType={x:Type Button}}, 
+                                            Path = IsPressed}" Value="true">
+                                            <Setter Property="Foreground" Value="#FF9D9999"/>
+                                        </DataTrigger>
+
+                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource 
+                                            Mode=FindAncestor, 
+                                            AncestorType={x:Type Button}}, 
+                                            Path = IsFocused}" Value="true">
+                                            <Setter Property="Foreground" Value="White"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Label.Style>
+                        </Label>
+                        
+                        <Label Content="{TemplateBinding Content}"
+                           Background="Transparent" Margin="-3 0 0 0"
+                           VerticalAlignment="Center" FontSize="23" FontWeight="Bold">
+                            <Label.Style>
+                                <Style TargetType="Label">
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="Visibility" Value="Hidden"/>
+                                    <Style.Triggers>
+                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource 
+                                            Mode=FindAncestor, 
+                                            AncestorType={x:Type Button}}, 
+                                            Path = IsFocused}" Value="true">
+                                            <DataTrigger.Setters>
+                                                <Setter Property="Effect">
+                                                    <Setter.Value>
+                                                        <BlurEffect Radius="25"/>
+                                                    </Setter.Value>
+                                                </Setter>
+
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger.Setters>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Label.Style>
+                        </Label>
+                            
+                    </Grid>
+                </Border>
+            </Grid>
+        </ControlTemplate>
+
+
+        <ControlTemplate x:Key="SlideMenu" TargetType="Button">
+            <Grid Name="Btn" Height="45">
+                <Border>
+                    <StackPanel Orientation="Horizontal">
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </ControlTemplate>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.15*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Grid.ColumnSpan="2" MouseDown="Grid_MouseDown" Background="#1A1E28">
+            <Border BorderThickness="1" BorderBrush="#FF303031" Background="Transparent">
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="STORE" 
+                            Template="{StaticResource ResourceKey=TopNenuButtons}"
+                            Command="{Binding StoreCommand}"/>
+
+                    <Button  Content="LIBRARY"
+                             Template="{StaticResource ResourceKey=TopNenuButtons}"
+                             Command="{Binding LibraryCommand}"/>
+
+                    <Button Content="CART" 
+                            Template="{StaticResource ResourceKey=TopNenuButtons}"
+                            Command="{Binding CartCommand}"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <Grid Grid.Row="0" Grid.Column="1">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Template="{StaticResource ResourceKey=TopNenuButtons}"
+                        Content="{Binding LogInButtonContent}"
+                        Command="{Binding LogCommand}"
+                        Height="50"/>
+
+                <Button Template="{StaticResource ResourceKey=TopNenuButtons}" 
+                        Click="Minimilize_Click"
+                        Content="─"
+                        Height="50"/>
+
+                <Button Template="{StaticResource ResourceKey=TopNenuButtons}" 
+                        Click="Close_Click"
+                        Content="╳" 
+                        Height="50"
+                        Margin="15 0"/>
+            </StackPanel>
+        </Grid>
+
+        <ContentControl Grid.Column="0" Grid.Row="2" Content="{Binding CurrentViewModel}"/>
+    </Grid>
+</Window>

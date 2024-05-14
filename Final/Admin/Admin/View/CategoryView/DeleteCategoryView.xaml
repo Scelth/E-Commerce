@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="Admin.View.CategoryView.DeleteCategoryView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Admin.View.CategoryView"
+             xmlns:viewmodel="clr-namespace:Admin.ViewModel.CategoryVM" 
+             d:DataContext="{d:DesignInstance Type=viewmodel:DeleteCategoryVM}"
+             xmlns:Model="clr-namespace:Admin.Model"
+             mc:Ignorable="d" 
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="24"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             Background="{DynamicResource MaterialDesignPaper}"
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <Grid Background="DimGray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition/>
+            <RowDefinition Height="0.2*"/>
+        </Grid.RowDefinitions>
+
+        <Label VerticalAlignment="Center" 
+               Content="Delete Category" 
+               FontSize="30"
+               HorizontalAlignment="Center"
+               Foreground="WhiteSmoke"/>
+
+        <ComboBox Grid.Row="1"
+                  VerticalAlignment="Center"
+                  Width="200"
+                  Height="60"
+                  FontSize="20"
+                  ItemsSource="{Binding Data.Categories}"
+                  SelectedItem="{Binding CategoryModel.Name}"
+                  Background="WhiteSmoke"
+                  Style="{DynamicResource MaterialDesignOutlinedComboBox}"/>
+
+        <Button Command="{Binding DeleteCommand}"
+                Height="40" 
+                Width="175"
+                Content="Delete"
+                Grid.Row="2"
+                Style="{DynamicResource MaterialDesignFlatAccentButton}"
+                Background="DarkRed"
+                Foreground="WhiteSmoke">
+        </Button>
+    </Grid>
+</UserControl>
